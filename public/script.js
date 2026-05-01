@@ -80,3 +80,60 @@ if (catalogo[2].generos.length > 1) {
 } else {
     console.log("Esse item possui apenas um gênero.");
 }
+
+catalogo.forEach(function(item) {
+    console.log(`- [${item.tipo}] ${item.titulo} (${item.ano})`);
+});
+
+const titulosEmCaixaAlta = catalogo.map(function(item) {
+    return item.titulo.toUpperCase();
+});
+
+console.log(titulosEmCaixaAlta);
+
+const naoAssistidos = catalogo.filter(function(item) {
+    return item.assistido === false;
+});
+
+console.log(naoAssistidos);
+console.log(naoAssistidos.length);
+
+const notaAlta = catalogo.find(function(item) {
+    return item.nota >= 9;
+});
+
+if (notaAlta) {
+    console.log(notaAlta.titulo, notaAlta.nota);
+} else {
+    console.log("Nenhum item com nota maior ou igual a 9 foi encontrado.");
+}
+
+const somaNotas = catalogo.reduce(function(acumulador, item) {
+    return acumulador + item.nota;
+}, 0);
+
+const mediaGeral = somaNotas / catalogo.length;
+
+const assistidos = catalogo.filter(function(item) {
+    return item.assistido === true;
+});
+
+const somaAssistidos = assistidos.reduce(function(acumulador, item) {
+    return acumulador + item.nota;
+}, 0);
+
+const mediaAssistidos = somaAssistidos / assistidos.length;
+
+console.log("Média geral:", mediaGeral.toFixed(2));
+console.log("Média dos assistidos:", mediaAssistidos.toFixed(2));
+
+const existeAntigo = catalogo.some(function(item) {
+    return item.ano < 2000;
+});
+
+const todosTemGenero = catalogo.every(function(item) {
+    return item.generos.length > 0;
+});
+
+console.log("Existe item antes de 2000?", existeAntigo);
+console.log("Todos possuem gênero?", todosTemGenero);
