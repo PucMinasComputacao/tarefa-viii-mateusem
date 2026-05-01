@@ -137,3 +137,36 @@ const todosTemGenero = catalogo.every(function(item) {
 
 console.log("Existe item antes de 2000?", existeAntigo);
 console.log("Todos possuem gênero?", todosTemGenero);
+
+const output = document.getElementById("output");
+
+const totalFilmes = catalogo.filter(function(item) {
+    return item.tipo === "filme";
+}).length;
+
+const totalSeries = catalogo.filter(function(item) {
+    return item.tipo === "serie";
+}).length;
+
+const ranking = [...catalogo]
+
+.sort(function(a, b) {
+    return b.nota - a.nota;
+})
+.slice(0, 3);
+
+output.innerHTML = `
+    <h2>Resumo do Catálogo</h2>
+    <p>Total de itens: ${catalogo.length}</p>
+    <p>Total de filmes: ${totalFilmes}</p>
+    <p>Total de séries: ${totalSeries}</p>
+    <p>Não assistidos: ${naoAssistidos.length}</p>
+    <p>Média geral: ${mediaGeral.toFixed(2)}</p>
+
+    <h3>Top 3 Notas</h3>
+    <ul>
+        <li>${ranking[0].titulo} - Nota: ${ranking[0].nota}</li>
+        <li>${ranking[1].titulo} - Nota: ${ranking[1].nota}</li>
+        <li>${ranking[2].titulo} - Nota: ${ranking[2].nota}</li>
+    </ul>
+`;
