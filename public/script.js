@@ -69,3 +69,14 @@ const catalogo = [
 
 },
 ];
+console.log(catalogo);
+
+console.log(catalogo[0].titulo);
+
+console.log(catalogo[catalogo.length - 1].ano);
+
+if (catalogo[2].generos.length > 1) {
+    console.log(catalogo[2].generos[1]);
+} else {
+    console.log("Esse item possui apenas um gênero.");
+}
